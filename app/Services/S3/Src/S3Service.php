@@ -84,22 +84,43 @@ class S3Service
         Storage::put($pathOnLocal, $content);
     }
 
+    /**
+     * @param string $pathOnS3
+     *
+     * @return string
+     */
     public function getContent(string $pathOnS3){
         $pathOnS3Real = $this->normalizePathS3($pathOnS3);
         $content = $this->_storage->get($pathOnS3Real);
         return $content;
     }
 
+    /**
+     * @param string $pathOnS3
+     *
+     * @return bool
+     */
     public function exists(string $pathOnS3){
         $pathOnS3Real = $this->normalizePathS3($pathOnS3);
         return $this->_storage->exists($pathOnS3Real);
     }
 
+    /**
+     * @param string $pathOnS3
+     *
+     * @return string
+     */
     public function getUrl(string $pathOnS3) : string {
         $pathOnS3Real = $this->normalizePathS3($pathOnS3);
         return $this->_storage->url($pathOnS3Real);
     }
 
+    /**
+     * @param string $pathOnS3
+     * @param int    $expTime
+     *
+     * @return string
+     */
     public function getPreSignedUrl(string $pathOnS3, int $expTime = 30) : string {
         $pathOnS3Real = $this->normalizePathS3($pathOnS3);
         $cmd = $this->_s3Client->getCommand('GetObject', [
@@ -111,6 +132,9 @@ class S3Service
         return (string) $request->getUri();
     }
 
+    /**
+     * @return FilesystemAdapter
+     */
     public function getStorage(){
         return $this->_storage;
     }

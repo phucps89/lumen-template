@@ -18,6 +18,11 @@ class CurrencyService
         $this->_formatter = $formatter;
     }
 
+    /**
+     * @param float $value
+     *
+     * @return string
+     */
     public function formatUSD(float $value){
         return $this->_formatter->formatCurrency($value, 'USD');
     }

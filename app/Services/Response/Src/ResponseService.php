@@ -28,6 +28,12 @@ class ResponseService
         return $classArray[$classCode-1];
     }
 
+    /**
+     * @param null $result
+     * @param int  $statusCode
+     *
+     * @return mixed
+     */
     public function send($result = null, $statusCode = Response::HTTP_OK)
     {
         $type = $this->getClassStatusCode($statusCode);
@@ -45,11 +51,19 @@ class ResponseService
         return response()->json($dataReturn, $statusCode);
     }
 
+    /**
+     * @param string $path
+     *
+     * @return mixed
+     */
     public function download(string $path){
         return response()->download(Storage::get($path))->deleteFileAfterSend(true);
     }
 
-    public function displayFromS3($pathOnS3){
+    /**
+     * @param string $pathOnS3
+     */
+    public function displayFromS3(string $pathOnS3){
         $url = \S3::getPreSignedUrl($pathOnS3);
         header('Content-type: ' . $this->mimeType($pathOnS3));
         readfile($url);

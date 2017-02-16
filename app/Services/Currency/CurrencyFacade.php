@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * Class CurrencyFacade
  *
- * @method static formatUSD(float $value)
+ * @method static string formatUSD(float $value)
  *
  * @package App\Services\Currency
  */

@@ -79,8 +79,7 @@ class S3Service
     }
 
     public function download(string $pathOnS3, string $pathOnLocal){
-        $pathOnS3Real = $this->normalizePathS3($pathOnS3);
-        $content = $this->_storage->get($pathOnS3Real);
+        $content = $this->getContent($pathOnS3);
         Storage::put($pathOnLocal, $content);
     }
 

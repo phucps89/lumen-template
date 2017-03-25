@@ -98,19 +98,10 @@ $app->routeMiddleware([
 |
 */
 
-// $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
 $app->register(App\Providers\AppServiceProvider::class);
-$app->register(\Illuminate\Redis\RedisServiceProvider::class);
-
-// JWTAuth
-$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
-
-$app->register(Prettus\Repository\Providers\RepositoryServiceProvider::class);
-$app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
-$app->register(\SwaggerLume\ServiceProvider::class);
 
 app('queue.connection');
 

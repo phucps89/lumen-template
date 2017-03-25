@@ -13,13 +13,13 @@
         "league/flysystem": "^1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "predis/predis": "~1.0",
-        "illuminate/redis": "5.4.*",
-        "darkaonline/swagger-lume": "2.*"
+        "illuminate/redis": "5.4.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "phpunit/phpunit": "~5.0",
-        "mockery/mockery": "~0.9"
+        "mockery/mockery": "~0.9",
+        "darkaonline/swagger-lume": "2.*"
     },
     "autoload": {
         "psr-4": {

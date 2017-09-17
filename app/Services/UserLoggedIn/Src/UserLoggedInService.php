@@ -5,6 +5,7 @@ namespace App\Services\UserLoggedIn\Src;
 use App\Entities\User\User;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\JWT;
+use Tymon\JWTAuth\Token;
 
 /**
  * Created by PhpStorm.
@@ -15,12 +16,13 @@ use Tymon\JWTAuth\JWT;
 class UserLoggedInService
 {
     protected $_user;
+    protected $_jwt;
 
     public function __construct()
     {
-        $jwt = $this->getJWT();
+        $this->_jwt = $this->getJWT();
 
-        $user = $jwt->authenticate();
+        $user = $this->_jwt->authenticate();
         $this->_user = $this->unserialize($user);
     }
 
@@ -34,5 +36,9 @@ class UserLoggedInService
 
     public function getUser() : User{
         return $this->_user;
+    }
+
+    public function getToken(): Token{
+        return $this->_jwt->getToken();
     }
 }

@@ -10,6 +10,15 @@ class UserController extends Controller
         return 'Account module - User Controller';
     }
 
+    /**
+     * @SWG\Get(
+     *     tags={"Account"},
+     *     path="/account/user/profile",
+     *     summary="Get profile user logged in",
+     *     @SWG\Parameter(ref="#/parameters/auth_header"),
+     *     @SWG\Response(response="200", description="Get profile successfully")
+     * )
+     */
     function profile(){
         return \RS::send(UserLoggedInFacade::getUser());
     }

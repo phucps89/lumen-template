@@ -5,6 +5,7 @@ namespace App\Services\UserLoggedIn;
 use App\Entities\User\User;
 use App\Services\UserLoggedIn\Src\UserLoggedInService;
 use Illuminate\Support\Facades\Facade;
+use Tymon\JWTAuth\Token;
 
 /**
  * Created by PhpStorm.
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Facade;
  * Class UserLoggedInFacade
  *
  * @method static User getUser()                    Get Model Account
+ * @method static Token getToken()                  Get Token
  *
  * @package App\Services\UserLoggedIn
  */

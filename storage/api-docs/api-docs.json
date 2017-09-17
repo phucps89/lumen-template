@@ -9,7 +9,73 @@
     "schemes": [
         "http"
     ],
-    "paths": {},
+    "paths": {
+        "/account/user/profile": {
+            "get": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Get profile user logged in",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/auth_header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get profile successfully"
+                    }
+                }
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login function",
+                "parameters": [
+                    {
+                        "name": "credential",
+                        "in": "body",
+                        "description": "Password",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "username": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Login successfully"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Logout function",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/auth_header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Logout successfully"
+                    }
+                }
+            }
+        }
+    },
     "definitions": {
         "error_default": {
             "properties": {

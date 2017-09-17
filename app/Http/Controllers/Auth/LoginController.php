@@ -13,6 +13,30 @@ class LoginController extends Controller
         return 'Authentication module - Login Controller';
     }
 
+    /**
+     * @SWG\Post(
+     *     tags={"Auth"},
+     *     path="/auth/login",
+     *     summary="Login function",
+     *     @SWG\Parameter(
+     *          name="credential",
+     *          in="body",
+     *          schema={
+     *              "properties":{
+                        "username":{
+     *                      "type":"string"
+     *                  },
+     *                  "password":{
+     *                      "type":"string"
+     *                  }
+     *              }
+     *          },
+     *          description="Password",
+     *          required=true,
+     *     ),
+     *     @SWG\Response(response="200", description="Login successfully")
+     * )
+     */
     function post(Request $request){
         $credentials = $request->only('username', 'password');
         try {
@@ -27,5 +51,20 @@ class LoginController extends Controller
 
         // all good so return the token
         return \RS::send(compact('token'));
+    }
+
+
+    /**
+     * @SWG\Delete(
+     *     tags={"Auth"},
+     *     path="/auth/login",
+     *     summary="Logout function",
+     *     @SWG\Parameter(ref="#/parameters/auth_header"),
+     *     @SWG\Response(response="200", description="Logout successfully")
+     * )
+     */
+    function logout(){
+        JWTAuth::invalidate(UserLoggedInFacade::getToken());
+        return \RS::send('logout_successfully');
     }
 }

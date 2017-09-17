@@ -78,6 +78,45 @@
         }
     },
     "definitions": {
+        "response_template_data": {
+            "description": "Response with data is array or object",
+            "properties": {
+                "_type": {
+                    "description": "type",
+                    "type": "string",
+                    "default": "success"
+                },
+                "_time": {
+                    "description": "Time response",
+                    "type": "string",
+                    "default": "2016-05-19 02:43:52"
+                },
+                "results": {
+                    "description": "Data response",
+                    "type": "array|object"
+                }
+            }
+        },
+        "response_template_message": {
+            "description": "Response with data is message",
+            "properties": {
+                "_type": {
+                    "description": "type",
+                    "type": "string",
+                    "default": "success"
+                },
+                "_time": {
+                    "description": "Time response",
+                    "type": "string",
+                    "default": "2016-05-19 02:43:52"
+                },
+                "message": {
+                    "description": "Message from server",
+                    "type": "string",
+                    "default": "Message content"
+                }
+            }
+        },
         "error_default_1": {
             "description": "Error of business (catch by developer)",
             "properties": {

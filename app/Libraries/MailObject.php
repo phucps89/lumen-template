@@ -23,6 +23,15 @@ class MailObject
     private $attachments = [];
 
     /**
+     * MailObject constructor.
+     */
+    public function __construct()
+    {
+        $this->from = config('mail.sender');
+    }
+
+
+    /**
      * @return string
      */
     public function getSubject()

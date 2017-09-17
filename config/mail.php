@@ -101,4 +101,5 @@ return [
     |
     */
     'pretend' => env('MAIL_PRETEND', false),
+    'sender' => env('MAIL_SENDER')
 ];

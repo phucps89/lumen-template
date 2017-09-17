@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Controllers\Account;
 
-use App\Entities\User\User;
 use App\Http\Controllers\Controller;
 use App\Services\UserLoggedIn\UserLoggedInFacade;
 

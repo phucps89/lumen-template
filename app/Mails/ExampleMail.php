@@ -3,6 +3,7 @@ namespace App\Mails;
 
 use App\Libraries\MailObject;
 use Illuminate\Bus\Queueable;
+use Illuminate\Http\File;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -26,6 +27,9 @@ class ExampleMail extends Mailable
     {
         $mail = $this->mail;
         $mail->validate();
+        foreach ($mail->getAttachments() as $file){
+            $this->attach($file);
+        }
         return $this
             ->subject($mail->getSubject())
             ->from($mail->getFrom())

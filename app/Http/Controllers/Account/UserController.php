@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Account;
 
+use App\Entities\User\User;
 use App\Http\Controllers\Controller;
 use App\Services\UserLoggedIn\UserLoggedInFacade;
 
@@ -20,6 +21,7 @@ class UserController extends Controller
      * )
      */
     function profile(){
-        return \RS::send(UserLoggedInFacade::getUser());
+        $user = UserLoggedInFacade::getUser();
+        return \RS::send($user);
     }
 }

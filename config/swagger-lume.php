@@ -184,7 +184,6 @@ return [
      */
     'constants' => [
         // 'SWAGGER_LUME_CONST_HOST' => env('SWAGGER_LUME_CONST_HOST', 'http://my-default-host.com'),
-        'SWAGGER_SCHEMA' => env('APP_SCHEMA')
     ],
 
 ];

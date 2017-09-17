@@ -106,9 +106,9 @@ class Helper
         return App::runningInConsole();
     }
 
-    public static function route($name, $parameters = []) : string
+    public static function route($name, $parameters = [], $secure = null) : string
     {
-        $url = route($name, $parameters);
+        $url = route($name, $parameters, $secure);
         if (self::runningInConsole()) {
             $domain = env('APP_URL');
             $urlTemp = preg_replace("/http:\/\/:\//", "{$domain}/", $url);

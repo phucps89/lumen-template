@@ -107,6 +107,7 @@ $app->routeMiddleware([
 // $app->register(App\Providers\EventServiceProvider::class);
 
 $app->register(App\Providers\AppServiceProvider::class);
+$app->register(\Illuminate\Mail\MailServiceProvider::class);
 $app->register(\Zizaco\Entrust\EntrustServiceProvider::class);
 
 app('queue.connection');

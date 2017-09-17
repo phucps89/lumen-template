@@ -69,9 +69,10 @@ class Handler extends ExceptionHandler
             case BadRequestHttpException::class :
                 return \RS::send($e->getMessage(), Response::HTTP_BAD_REQUEST);
             default :
+                //print_r(array_slice($e->getTrace(), 0, 4));exit;
                 return \RS::send([
                     'message' => $e->getMessage(),
-                    'traces'  => $e->getTrace()
+                    'traces'  => array_slice($e->getTrace(), 0, 4)
                 ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 

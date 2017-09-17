@@ -2,6 +2,7 @@
 
 namespace App\Repositories\User;
 
+use App\Entities\User\User;
 use App\Entities\User\UserDept;
 use App\Entities\User\UserRole;
 use App\Jobs\SendReminderEmailJob;
@@ -28,7 +29,7 @@ class UserRepository extends BaseRepository
     public function model()
     {
         // TODO: Implement model() method.
-        return \App\Entities\User\User::class;
+        return User::class;
     }
 
     public function boot()

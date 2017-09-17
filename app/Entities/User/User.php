@@ -18,10 +18,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends BaseModel implements AuthenticatableContract, AuthorizableContract, JWTSubject
 {
-    use Authenticatable, Authorizable, SoftDeletes;
+    use Authenticatable;
+    use SoftDeletes {restore as restoreSoftDelete; }
+    use EntrustUserTrait {restore as restoreEntrust; }
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -66,5 +69,10 @@ class User extends BaseModel implements AuthenticatableContract, AuthorizableCon
         if($raw != null) {
             $this->attributes['password_alternative'] = Hash::make($raw);
         }
+    }
+
+    public function restore()
+    {
+        $this->restoreSoftDelete();
     }
 }

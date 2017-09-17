@@ -30,13 +30,15 @@ $app->configure('filesystems');
 $app->configure('mail');
 $app->configure('queue');
 $app->configure('swagger-lume');
+$app->configure('entrust');
 
 $app->withFacades(true, [
     /**
      * Class alias here
      */
     App\Services\Response\ResponseFacade::class => 'RS',
-    App\Services\S3\S3Facade::class             => 'S3'
+    App\Services\S3\S3Facade::class             => 'S3',
+    \Zizaco\Entrust\EntrustFacade::class        => 'Entrust',
 ]);
 
 $app->withEloquent();
@@ -85,6 +87,9 @@ $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,
     'jwt.auth' => Tymon\JWTAuth\Http\Middleware\Authenticate::class,
     'jwt.refresh' => \Tymon\JWTAuth\Http\Middleware\RefreshToken::class,
+    'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,
+    'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,
+    'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class,
 ]);
 
 /*
@@ -102,6 +107,7 @@ $app->routeMiddleware([
 // $app->register(App\Providers\EventServiceProvider::class);
 
 $app->register(App\Providers\AppServiceProvider::class);
+$app->register(\Zizaco\Entrust\EntrustServiceProvider::class);
 
 app('queue.connection');
 

@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
-        KeyGenerateCommand::class,
+        KeyGenerateCommand::class
     ];
 
     /**

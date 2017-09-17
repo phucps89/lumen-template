@@ -78,7 +78,8 @@
         }
     },
     "definitions": {
-        "error_default": {
+        "error_default_1": {
+            "description": "Error of business (catch by developer)",
             "properties": {
                 "_type": {
                     "description": "Error type",
@@ -86,7 +87,7 @@
                     "default": "client_error"
                 },
                 "_time": {
-                    "description": "Message error",
+                    "description": "Time response",
                     "type": "string",
                     "default": "2016-05-19 02:43:52"
                 },
@@ -94,6 +95,38 @@
                     "description": "Text message",
                     "type": "string",
                     "default": ""
+                }
+            }
+        },
+        "error_default_2": {
+            "description": "Error of logic (occurs on runtime)",
+            "properties": {
+                "_type": {
+                    "description": "Error type",
+                    "type": "string",
+                    "default": "client_error"
+                },
+                "_time": {
+                    "description": "Time response",
+                    "type": "string",
+                    "default": "2016-05-19 02:43:52"
+                },
+                "errors": {
+                    "properties": {
+                        "message": {
+                            "description": "Message error",
+                            "type": "string",
+                            "default": "Error at ..."
+                        },
+                        "traces": {
+                            "description": "Tracking error",
+                            "type": "array",
+                            "items": {
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "type": "object"
                 }
             }
         }

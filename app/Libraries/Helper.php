@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\App;
 
 /**
  * Created by PhpStorm.
- * User: phuctran
+ * Account: phuctran
  * Date: 23/01/2017
  * Time: 11:11
  */

@@ -8,7 +8,7 @@ use Tymon\JWTAuth\JWT;
 
 /**
  * Created by PhpStorm.
- * User: phuctran
+ * Account: phuctran
  * Date: 09/02/2017
  * Time: 10:03
  */
@@ -22,7 +22,6 @@ class UserLoggedInService
 
         $user = $jwt->authenticate();
         $this->_user = $this->unserialize($user);
-        $this->_user->roles();
     }
 
     private function getJWT() : JWT{

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 /**
  * Created by PhpStorm.
- * User: phuctran
+ * Account: phuctran
  * Date: 19/01/2017
  * Time: 15:42
  */

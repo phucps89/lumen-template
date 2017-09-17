@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Created by PhpStorm.
- * User: phuctran
+ * Account: phuctran
  * Date: 09/02/2017
  * Time: 10:02
  */
@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * Class UserLoggedInFacade
  *
- * @method static User getUser()                    Get Model User
+ * @method static User getUser()                    Get Model Account
  *
  * @package App\Services\UserLoggedIn
  */

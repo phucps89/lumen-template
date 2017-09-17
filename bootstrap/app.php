@@ -116,8 +116,10 @@ app('queue.connection');
 |
 */
 
-$app->router->group(['namespace' => 'App\Http\Controllers'], function ($router) {
+$app->router->group(['namespace' => 'App\Http\Controllers'], function (\Laravel\Lumen\Routing\Router $router) {
     require __DIR__.'/../routes/web.php';
+    require __DIR__.'/../routes/auth.php';
+    require __DIR__ . '/../routes/account.php';
 });
 
 return $app;

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 /**
  * Created by PhpStorm.
- * User: phuctran
+ * Account: phuctran
  * Date: 25/01/2017
  * Time: 11:23
  */

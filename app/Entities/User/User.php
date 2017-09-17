@@ -29,6 +29,8 @@ class User extends BaseModel implements AuthenticatableContract, AuthorizableCon
      */
     protected $hidden = [
         'password',
+        'password_alternative',
+        'deleted_at'
     ];
 
     protected $fillable = [
@@ -53,5 +55,15 @@ class User extends BaseModel implements AuthenticatableContract, AuthorizableCon
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    function setPasswordAttribute($raw){
+        $this->attributes['password'] = Hash::make($raw);
+    }
+
+    function setPasswordAlternativeAttribute($raw){
+        if($raw != null) {
+            $this->attributes['password_alternative'] = Hash::make($raw);
+        }
     }
 }

@@ -13,6 +13,11 @@ $router->group(['namespace' => 'Auth', 'prefix' => 'auth'], function(\Laravel\Lu
             'uses' => 'LoginController@post'
         ]);
 
+        $router->get('/reset-password', [
+            'as' => 'password.reset',
+            'uses' => 'LoginController@resetPassword'
+        ]);
+
         $router->group(['middleware' => 'jwt.auth'], function (\Laravel\Lumen\Routing\Router $router){
             $router->delete('/', [
                 'as' => 'auth.login.logout',

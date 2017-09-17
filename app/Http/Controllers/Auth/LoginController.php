@@ -67,4 +67,8 @@ class LoginController extends Controller
         JWTAuth::invalidate(UserLoggedInFacade::getToken());
         return \RS::send('logout_successfully');
     }
+
+    function resetPassword(){
+        return 'reset';
+    }
 }

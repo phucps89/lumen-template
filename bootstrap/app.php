@@ -1,9 +1,9 @@
 <?php
 
-require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 try {
-    (new Dotenv\Dotenv(__DIR__.'/../'))->load();
+    (new Dotenv\Dotenv(__DIR__ . '/../'))->load();
 } catch (Dotenv\Exception\InvalidPathException $e) {
     //
 }
@@ -20,7 +20,7 @@ try {
 */
 
 $app = new Laravel\Lumen\Application(
-    realpath(__DIR__.'/../')
+    realpath(__DIR__ . '/../')
 );
 
 $app->configure('repository');
@@ -37,9 +37,12 @@ $app->withFacades(true, [
      * Class alias here
      */
     App\Services\Response\ResponseFacade::class => 'RS',
-    App\Services\S3\S3Facade::class             => 'S3',
-    \Zizaco\Entrust\EntrustFacade::class        => 'Entrust',
+    App\Services\S3\S3Facade::class => 'S3',
+    Zizaco\Entrust\EntrustFacade::class => 'Entrust',
+    Illuminate\Support\Facades\Notification::class => 'Notification'
 ]);
+
+$app->alias('mailer', \Illuminate\Contracts\Mail\Mailer::class);
 
 $app->withEloquent();
 
@@ -108,6 +111,7 @@ $app->routeMiddleware([
 
 $app->register(App\Providers\AppServiceProvider::class);
 $app->register(\Illuminate\Mail\MailServiceProvider::class);
+$app->register(\Illuminate\Notifications\NotificationServiceProvider::class);
 $app->register(\Zizaco\Entrust\EntrustServiceProvider::class);
 
 app('queue.connection');
@@ -124,8 +128,8 @@ app('queue.connection');
 */
 
 $app->router->group(['namespace' => 'App\Http\Controllers'], function (\Laravel\Lumen\Routing\Router $router) {
-    require __DIR__.'/../routes/web.php';
-    require __DIR__.'/../routes/auth.php';
+    require __DIR__ . '/../routes/web.php';
+    require __DIR__ . '/../routes/auth.php';
     require __DIR__ . '/../routes/account.php';
 });
 

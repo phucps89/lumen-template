@@ -8,9 +8,11 @@ use App\Entities\Location\Location;
 use App\Entities\Role\Role;
 use Carbon\Carbon;
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Query\JoinClause;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Lumen\Auth\Authorizable;
@@ -22,7 +24,7 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends BaseModel implements AuthenticatableContract, AuthorizableContract, JWTSubject
 {
-    use Authenticatable;
+    use Authenticatable, Notifiable;
     use SoftDeletes {restore as restoreSoftDelete; }
     use EntrustUserTrait {restore as restoreEntrust; }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\User\User;
 use App\Libraries\Helper;
 use App\Libraries\MailObject;
 use App\Mails\ExampleMail;

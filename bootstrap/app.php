@@ -23,6 +23,7 @@ $app = new Laravel\Lumen\Application(
     realpath(__DIR__ . '/../')
 );
 
+$app->configure('view');
 $app->configure('repository');
 $app->configure('auth');
 $app->configure('jwt');

@@ -24,5 +24,8 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->register(\Prettus\Repository\Providers\RepositoryServiceProvider::class);
         $this->app->register(\Illuminate\Filesystem\FilesystemServiceProvider::class);
+        $this->app->register(\Illuminate\Mail\MailServiceProvider::class);
+        $this->app->register(\Illuminate\Notifications\NotificationServiceProvider::class);
+        $this->app->register(\Zizaco\Entrust\EntrustServiceProvider::class);
     }
 }

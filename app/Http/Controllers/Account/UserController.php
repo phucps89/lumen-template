@@ -20,7 +20,7 @@ class UserController extends Controller
      * )
      */
     function profile(){
-        $user = UserLoggedInFacade::getUser();//$user->restoreSoftDelete();
+        $user = UserLoggedInFacade::getUser();
         return \RS::send($user);
     }
 }

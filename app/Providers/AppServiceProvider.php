@@ -27,5 +27,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->register(\Illuminate\Mail\MailServiceProvider::class);
         $this->app->register(\Illuminate\Notifications\NotificationServiceProvider::class);
         $this->app->register(\Zizaco\Entrust\EntrustServiceProvider::class);
+        $this->app->register(LogServiceProvider::class);
     }
 }

@@ -29,7 +29,6 @@
             "App\\": "app/"
         },
         "files": [
-            "bootstrap/global.php",
             "bootstrap/constant.php"
         ]
     },

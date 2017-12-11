@@ -33,6 +33,8 @@ $app->configure('queue');
 $app->configure('swagger-lume');
 $app->configure('entrust');
 
+$app->instance('path.config', app()->basePath() . DIRECTORY_SEPARATOR . 'config');
+
 $app->withFacades(true, [
     /**
      * Class alias here
@@ -40,7 +42,7 @@ $app->withFacades(true, [
     App\Services\Response\ResponseFacade::class => 'RS',
     App\Services\S3\S3Facade::class => 'S3',
     Zizaco\Entrust\EntrustFacade::class => 'Entrust',
-    Illuminate\Support\Facades\Notification::class => 'Notification'
+    Illuminate\Support\Facades\Notification::class => 'Notification',
 ]);
 
 $app->alias('mailer', \Illuminate\Contracts\Mail\Mailer::class);

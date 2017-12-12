@@ -39,13 +39,23 @@ class ResponseService
         $textResult = ($type == 'success') ? 'results':'errors';
         $dataReturn = [
             '_type' => $type,
-            '_time' => date('m/d/Y H:i:s')
+            '_time' => date('m/d/Y H:i:s'),
+            '_locale' => app('translator')->getLocale()
         ];
         if (is_string($result)) {
-            $dataReturn['message'] = $result;
+            $dataReturn[$textResult]['message'] = $result;
         }
         if (!is_string($result) && $result != null) {
-            $dataReturn[$textResult] = $result;
+            if($result instanceof \Exception){
+                $dataReturn[$textResult] = [
+                    'message' => $result->getMessage(),
+                    'code' => $result->getCode(),
+                    'traces' => array_slice($result->getTrace(), 0, 4),
+                ];
+            }
+            else{
+                $dataReturn[$textResult] = $result;
+            }
         }
         return response()->json($dataReturn, $statusCode);
     }

@@ -11,14 +11,6 @@ class Controller extends BaseController
 {
     //
     function home(UserRepository $repository){
-//        return \RS::send($repository->paginate());
-        $e = new \Exception('chan wa di');
-        try{
-            1/0;
-        }catch (\Exception $e){
-//            print_r($e->getTrace());exit;
-            return \RS::send($e, Response::HTTP_BAD_REQUEST);
-        }
-
+        return \app()->version();
     }
 }

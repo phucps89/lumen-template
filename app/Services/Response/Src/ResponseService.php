@@ -24,36 +24,35 @@ class ResponseService
             'client_error',
             'server_error'
         ];
-        return $classArray[$classCode-1];
+        return $classArray[$classCode - 1];
     }
 
     /**
      * @param null $result
-     * @param int  $statusCode
+     * @param int $statusCode
      *
      * @return mixed
      */
     public function send($result = null, $statusCode = Response::HTTP_OK)
     {
         $type = $this->getClassStatusCode($statusCode);
-        $textResult = ($type == 'success') ? 'results':'errors';
+        $textResult = ($type == 'success') ? 'results' : 'errors';
         $dataReturn = [
-            '_type' => $type,
-            '_time' => date('m/d/Y H:i:s'),
+            '_type'   => $type,
             '_locale' => app('translator')->getLocale()
         ];
         if (is_string($result)) {
             $dataReturn[$textResult]['message'] = $result;
         }
         if (!is_string($result) && $result != null) {
-            if($result instanceof \Exception){
+            if ($result instanceof \Exception) {
                 $dataReturn[$textResult] = [
                     'message' => $result->getMessage(),
-                    'code' => $result->getCode(),
-                    'traces' => array_slice($result->getTrace(), 0, 4),
+                    'code'    => $result->getCode(),
+                    'traces'  => array_slice($result->getTrace(), 0, 4),
                 ];
             }
-            else{
+            else {
                 $dataReturn[$textResult] = $result;
             }
         }
@@ -65,23 +64,26 @@ class ResponseService
      *
      * @return mixed
      */
-    public function download(string $path){
+    public function download(string $path)
+    {
         return response()->download(Storage::get($path))->deleteFileAfterSend(true);
     }
 
     /**
      * @param string $pathOnS3
      */
-    public function displayFromS3(string $pathOnS3){
+    public function displayFromS3(string $pathOnS3)
+    {
         $url = \S3::getPreSignedUrl($pathOnS3);
         header('Content-type: ' . $this->mimeType($pathOnS3));
         readfile($url);
     }
 
-    private function mimeType($path) {
+    private function mimeType($path)
+    {
         preg_match("|\.([a-z0-9]{2,4})$|i", $path, $fileSuffix);
 
-        switch(strtolower($fileSuffix[1])) {
+        switch (strtolower($fileSuffix[1])) {
             case 'js' :
                 return 'application/x-javascript';
             case 'json' :
@@ -94,7 +96,7 @@ class ResponseService
             case 'gif' :
             case 'bmp' :
             case 'tiff' :
-                return 'image/'.strtolower($fileSuffix[1]);
+                return 'image/' . strtolower($fileSuffix[1]);
             case 'css' :
                 return 'text/css';
             case 'xml' :
@@ -148,7 +150,7 @@ class ResponseService
             case 'swf' :
                 return 'application/x-shockwave-flash';
             default :
-                if(function_exists('mime_content_type')) {
+                if (function_exists('mime_content_type')) {
                     $fileSuffix = mime_content_type($path);
                 }
                 return 'unknown/' . trim($fileSuffix[0], '.');
